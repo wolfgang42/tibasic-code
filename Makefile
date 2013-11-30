@@ -11,6 +11,9 @@ all: tibasic
 tibasic: objects src/tokens-orig.o
 	g++ -o tibasic $(SHAREDOBJFILES) src/tokens-orig.o
 
+tibasic-html: objects src/tokens-html.o
+	g++ -o tibasic-html $(SHAREDOBJFILES) src/tokens-html.o
+
 objects: $(SHAREDOBJFILES)
 
 -include $(DEPFILES)
