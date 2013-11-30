@@ -1,7 +1,4 @@
-PROJDIRS := src
-SRCFILES := $(shell find $(PROJDIRS) -type f -name "*.cpp")
-OBJFILES := $(patsubst %.cpp,%.o,$(SRCFILES))
-DEPFILES := $(patsubst %.cpp,%.d,$(SRCFILES))
+SHAREDOBJFILES := src/main.o src/tibasic.o src/tokens.o
 
 .PHONY: all clean
 
@@ -11,8 +8,10 @@ CXX := g++
 
 all: tibasic
 
-tibasic: $(OBJFILES)
-	g++ -o tibasic $(OBJFILES)
+tibasic: objects src/tokens-orig.o
+	g++ -o tibasic $(SHAREDOBJFILES) src/tokens-orig.o
+
+objects: $(SHAREDOBJFILES)
 
 -include $(DEPFILES)
 
